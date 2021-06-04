@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+    <meta http-equiv='cache-control' content="no-cache, must-revalidate, post-check=0, pre-check=0">
+    <meta http-equiv='expires' content='0'>
+    <meta http-equiv='pragma' content='no-cache'>
+
+    <meta http-equiv="cache-control" content="max-age=0"/>
+    <meta http-equiv="cache-control" content="no-cache"/>
+    <meta http-equiv="expires" content="0"/>
+    <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT"/>
+    <meta http-equiv="pragma" content="no-cache"/>
+    <link rel="stylesheet" href="https://www.quanzhanketang.com/lib/w3.css">
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.0.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/knockout/knockout-2.2.1.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.2"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
+    <style>
+        ul {
+            list-style: none;
+        }
+
+        .wrap {
+            width: 270px;
+            height: 30px;
+            margin: 50px auto 0;
+            background-color: hotpink;
+        }
+
+        .wrap li {
+
+        }
+
+        .wrap > ul > li {
+            float: left;
+            margin-right: 10px;
+            position: relative;
+        }
+
+        .wrap a {
+            display: block;
+            height: 30px;
+            width: 100px;
+            text-decoration: none;
+            color: white;
+            line-height: 30px;
+            text-align: center;
+        }
+
+        .wrap li ul {
+            position: absolute;
+            top: 30px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div class="navbar">
+    <div class="navbar-inner">
+        <h1 class="text-center" style="color:black;"><b>IMAGE SEARCH DEMO </b>&nbsp;&nbsp;&nbsp;
+            <a class="navbar-brand" href="">
+                <img src="images/logo.jpg" style="height:40px;">
+            </a>
+        </h1>
+
+    </div>
+</div>
+
+<div class="wrap" id="navigationBar">
+    <ul>
+        <li>
+            <a href="/">main page</a>
+        </li>
+        <li>
+            <a href="collect">collection</a>
+        </li>
+    </ul>
+</div>
+<div id="display" class="container">
+    <p><font size="1" color="gray">您共有{{imageList.length}}个收藏</font></p>
+    <table id="table" class="table" style="background: white; border: 1px">
+        <br/><br/><br/><br/>
+        <tbody>
+        <tr v-for="item in showList">
+            <td style="
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 200px;
+    height: 200px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-right: 0px;
+    padding-left: 0px;
+    border-left-width: 1px;
+    border-bottom-width: 1px;border-right-width: 1px;background: white;
+" v-show="item.fir != ''">
+                <img :src='item.fir' alt="Norway" style="
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 200px;
+    height: 200px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 0px;
+    padding-left: 5px;
+    border-left-width: 0px;
+    border-bottom-width: 0px;border-right-width: 0px;
+" width="200" height="200">
+                <br/><br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;<img src="images/delete.png" @click="delStar($event)"/>
+                <br/><br/>
+            </td>
+
+            <td style="
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 200px;
+    height: 200px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-right: 0px;
+    padding-left: 0px;
+    border-left-width: 1px;
+    border-bottom-width: 1px;border-right-width: 1px;background: white;
+" v-show="item.sec != ''">
+                <img :src="item.sec" alt="Norway" style="
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 200px;
+    height: 200px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 0px;
+    padding-left: 5px;
+    border-left-width: 0px;
+    border-bottom-width: 0px;border-right-width: 0px;
+" width="200" height="200">
+                <br/><br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;<img src="images/delete.png" @click="delStar($event)"/>
+                <br/><br/>
+            </td>
+            <td style="
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 200px;
+    height: 200px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-right: 0px;
+    padding-left: 0px;
+    border-left-width: 1px;
+    border-bottom-width: 1px;border-right-width: 1px;background: white;
+" v-show="item.third != ''">
+                <img :src='item.third' alt="Norway" style="
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 200px;
+    height: 200px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 0px;
+    padding-left: 5px;
+    border-left-width: 0px;
+    border-bottom-width: 0px;border-right-width: 0px;
+" width="200" height="200">
+                <br/><br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;<img src="images/delete.png" @click="delStar($event)"/>
+                <br/><br/>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+
+<script type="text/javascript">
+    let vue = new Vue({
+        el: '#display',
+        data: {
+            imageList: [],
+            showList: []
+        },
+        methods: {
+            delStar: function (e) {
+                let formData = new FormData();
+                let delPath = e.currentTarget.previousElementSibling
+                    .previousElementSibling.previousElementSibling.src
+                formData.append('imageDel', delPath)
+                $.ajax({
+                    url: 'delStar',
+                    type: 'POST',
+                    data: formData,// 上传formdata封装的数据
+                    async: true,
+                    // 下面三个参数要指定，如果不指定，会报一个JQuery的错误
+                    cache: false,// 不缓存
+                    contentType: false,// 不设置内容类型jQuery不要去设置Content-Type请求头
+
+                    processData: false,// jQuery不要去处理发送的数据
+
+                    success: function (response) {
+                        vue.imageList = response.imageList
+                        changeShowImage()
+                    },
+                    error: function (errorThrow) {
+
+                    }
+                });
+            }
+        }
+    });
+
+
+    this.updateImage()
+
+    function updateImage() {
+        let formData = new FormData();
+        $.ajax({
+            url: 'getStar',
+            type: 'POST',
+            data: formData,// 上传formdata封装的数据
+            async: true,
+            // 下面三个参数要指定，如果不指定，会报一个JQuery的错误
+            cache: false,// 不缓存
+            contentType: false,// 不设置内容类型jQuery不要去设置Content-Type请求头
+
+            processData: false,// jQuery不要去处理发送的数据
+
+            success: function (response) {
+                vue.imageList = response.imageList
+                changeShowImage()
+            },
+            error: function (errorThrow) {
+
+            }
+        });
+    }
+
+    function changeShowImage() {
+        vue.showList = []
+        let count = 0
+        let show = vue.imageList
+        let row = {fir: "", sec: "", third: ""}
+        for (let i = 0; i < show.length; i++) {
+            if (count === 0) {
+                row.fir = show[i]
+            } else if (count === 1) {
+                row.sec = show[i]
+            } else if (count === 2) {
+                row.third = show[i]
+            }
+            count += 1
+            if (count === 3) {
+                vue.showList.push(row)
+                row = {fir: "", sec: "", third: ""}
+                count = 0
+            }
+        }
+        if (count !== 0) {
+            vue.showList.push(row)
+        }
+    }
+
+</script>
+
+</html>
